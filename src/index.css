@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    @apply antialiased scroll-smooth;
+    font-family: var(--font-sans);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  ::selection {
+    @apply bg-amber-200/80 text-zinc-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber-500/70 ring-offset-2 ring-offset-zinc-50;
+  }
+}
+
+/* Conteúdo didático — legibilidade tipo documentação profissional */
+@layer components {
+  .markdown-body {
+    @apply text-zinc-600 leading-[1.7] text-[15px] md:text-base;
+    font-family: var(--font-sans);
+  }
+  .markdown-body h1 {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-5 mt-2 not-italic;
+    letter-spacing: -0.02em;
+  }
+  .markdown-body h2 {
+    @apply text-xl md:text-2xl font-semibold text-zinc-900 mb-3 mt-10 pt-2 border-t border-zinc-100;
+    letter-spacing: -0.02em;
+  }
+  .markdown-body h3 {
+    @apply text-lg font-semibold text-zinc-800 mb-2 mt-8;
+  }
+  .markdown-body p {
+    @apply mb-4;
+  }
+  .markdown-body ul {
+    @apply list-disc pl-5 mb-4 space-y-2 marker:text-zinc-400;
+  }
+  .markdown-body code {
+    font-family: var(--font-mono);
+    @apply bg-zinc-100 text-amber-800 px-1.5 py-0.5 rounded-md text-[0.875em] font-medium border border-zinc-200/80;
+  }
+  .markdown-body pre {
+    font-family: var(--font-mono);
+    @apply bg-zinc-950 text-zinc-100 p-4 md:p-5 rounded-xl overflow-x-auto mb-6 text-[13px] leading-relaxed border border-zinc-800 shadow-inner;
+  }
+  .markdown-body pre code {
+    @apply bg-transparent border-0 p-0 text-inherit text-[13px] font-normal;
+  }
+  .markdown-body strong {
+    @apply font-semibold text-zinc-900;
+  }
+  .markdown-body blockquote {
+    @apply border-l-[3px] border-amber-500 bg-amber-50/50 pl-4 py-3 pr-4 rounded-r-lg text-zinc-700 my-6 not-italic text-[15px];
+  }
+  .markdown-body ol {
+    @apply list-decimal pl-5 mb-4 space-y-2 marker:text-zinc-400 marker:font-medium;
+  }
+  .markdown-body table {
+    @apply w-full text-sm border-collapse border border-zinc-200 rounded-lg overflow-hidden mb-6 shadow-sm;
+  }
+  .markdown-body th {
+    @apply bg-zinc-100 text-left font-semibold text-zinc-800 px-3 py-2.5 border-b border-zinc-200;
+  }
+  .markdown-body td {
+    @apply px-3 py-2.5 border-b border-zinc-100 bg-white;
+  }
+}
+
+/* Bolha do usuário no chat (fundo escuro/laranja) */
+.markdown-body--on-accent strong {
+  @apply font-semibold text-white;
+}
+.markdown-body--on-accent p {
+  @apply text-white/95;
+}
+.markdown-body--on-accent code {
+  font-family: var(--font-mono);
+  @apply border border-white/25 bg-white/15 text-amber-50;
+}
+.markdown-body--on-accent pre {
+  font-family: var(--font-mono);
+  @apply my-2 rounded-lg border border-white/10 bg-black/30 p-3 text-xs text-zinc-100;
+}
+.markdown-body--on-accent a {
+  @apply text-amber-100 underline-offset-2 hover:text-white;
+}
